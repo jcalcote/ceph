@@ -396,7 +396,6 @@ int _action_on_all_objects_in_pg(ObjectStore *store, coll_t coll, action_on_obje
 				   next,
 				   ghobject_t::get_max(),
 				   LIST_AT_A_TIME,
-				   0,
 				   &list,
 				   &next);
     if (r < 0) {
@@ -702,7 +701,7 @@ void remove_coll(ObjectStore *store, const coll_t &coll)
   cout << "remove_coll " << coll << std::endl;
   while (!next.is_max()) {
     vector<ghobject_t> objects;
-    r = store->collection_list(coll, next, ghobject_t::get_max(), 300, 0,
+    r = store->collection_list(coll, next, ghobject_t::get_max(), 300,
       &objects, &next);
     if (r < 0)
       goto out;
@@ -1029,7 +1028,7 @@ int export_files(ObjectStore *store, coll_t coll)
 
   while (!next.is_max()) {
     vector<ghobject_t> objects;
-    int r = store->collection_list(coll, next, ghobject_t::get_max(), 300, 0,
+    int r = store->collection_list(coll, next, ghobject_t::get_max(), 300,
       &objects, &next);
     if (r < 0)
       return r;
